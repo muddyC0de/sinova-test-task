@@ -25,7 +25,7 @@ export default async function CatPage({ params }: { params: { id: string } }) {
         Life span: {data[0].breeds[0].life_span} years
       </p>
 
-      <div className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
         {data.map((item: any) => (
           <img
             key={item.id}
