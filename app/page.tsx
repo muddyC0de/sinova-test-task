@@ -21,6 +21,7 @@ export default async function Home() {
       headers: {
         "x-api-key":
           "live_9QSdBoRmx3U5ykKjEI09Qm2h8xmuyGCAOCyIZdoqBon7obnaqYweugQ9l0RVrUks",
+        cache: "no-store",
       },
     }
   );
