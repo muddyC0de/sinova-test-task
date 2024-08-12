@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default async function CatPage({ params }: { params: { id: string } }) {
   const { data } = await axios.get(
-    "https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=" +
+    `https://api.thecatapi.com/v1/images/search?limit=10&timestamp=${new Date()}&breed_ids=` +
       params.id,
     {
       headers: {

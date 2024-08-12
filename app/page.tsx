@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default async function Home() {
   const { data: dogs } = await axios.get(
-    "https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1",
+    `https://api.thedogapi.com/v1/images/search?limit=10&timestamp=${new Date()}&has_breeds=1`,
     {
       headers: {
         "x-api-key":
@@ -18,7 +18,7 @@ export default async function Home() {
   );
 
   const { data: cats } = await axios.get(
-    "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1",
+    `https://api.thecatapi.com/v1/images/search?limit=10&timestamp=${new Date()}&has_breeds=1`,
     {
       headers: {
         "x-api-key":
