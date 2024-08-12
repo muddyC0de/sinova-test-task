@@ -12,7 +12,7 @@ export default async function Home() {
       headers: {
         "x-api-key":
           "live_L2X759mQRgukeiyBqm85q3hxHOG8fMKRNlNb2nltEPv0MjzqGDdr7e1Wkhn8i7um",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Cache-Control": "no-cache",
         Pragma: "no-cache",
         Expires: "0",
       },
@@ -25,7 +25,7 @@ export default async function Home() {
       headers: {
         "x-api-key":
           "live_9QSdBoRmx3U5ykKjEI09Qm2h8xmuyGCAOCyIZdoqBon7obnaqYweugQ9l0RVrUks",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Cache-Control": "no-cache",
         Pragma: "no-cache",
         Expires: "0",
       },
