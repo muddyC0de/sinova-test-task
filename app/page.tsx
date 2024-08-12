@@ -3,8 +3,6 @@ import { Card } from "@/shared/components/Card";
 import axios from "axios";
 import Link from "next/link";
 
-export const fetchCache = "force-no-store";
-
 export default async function Home() {
   const { data: dogs } = await axios.get(
     "https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1",
