@@ -1,35 +1,29 @@
 import { Container } from "@/shared/components";
 import { Card } from "@/shared/components/Card";
-import axios from "axios";
 import Link from "next/link";
 
 export default async function Home() {
-  const { data: dogs } = await axios.get(
-    `https://api.thedogapi.com/v1/images/search?limit=10&timestamp=${new Date().getTime()}&has_breeds=1`,
+  const dogs = await fetch(
+    `https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1`,
     {
       headers: {
         "x-api-key":
           "live_L2X759mQRgukeiyBqm85q3hxHOG8fMKRNlNb2nltEPv0MjzqGDdr7e1Wkhn8i7um",
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-        Expires: "0",
       },
+      cache: "no-cache",
     }
-  );
+  ).then((res) => res.json());
 
-  const { data: cats } = await axios.get(
-    `https://api.thecatapi.com/v1/images/search?limit=10&timestamp=${new Date().getTime()}&has_breeds=1`,
+  const cats = await fetch(
+    `https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1`,
     {
       headers: {
         "x-api-key":
           "live_9QSdBoRmx3U5ykKjEI09Qm2h8xmuyGCAOCyIZdoqBon7obnaqYweugQ9l0RVrUks",
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-        Expires: "0",
       },
+      cache: "no-cache",
     }
-  );
-
+  ).then((res) => res.json());
   const shuffleArray = (array: []) => {
     let currentIndex = array.length,
       randomIndex;
