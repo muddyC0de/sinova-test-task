@@ -10,6 +10,7 @@ export default async function Home() {
       headers: {
         "x-api-key":
           "live_L2X759mQRgukeiyBqm85q3hxHOG8fMKRNlNb2nltEPv0MjzqGDdr7e1Wkhn8i7um",
+        cache: "no-store",
       },
     }
   );
