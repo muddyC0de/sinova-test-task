@@ -39,7 +39,7 @@ export default async function Home() {
   };
   return (
     <Container>
-      <div className="flex flex-wrap gap-8 mt-6">
+      <div className="grid px-4 md:px-4 lg:px-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {shuffleArray(cats.concat(dogs)).map((item: any, i: number) => (
           <Link
             key={item.id}

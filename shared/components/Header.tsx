@@ -10,7 +10,7 @@ interface Props {
 export const Header: React.FC<Props> = ({ className }) => {
   return (
     <header className={clsx(className, "")}>
-      <Container className="h-10 flex  items-center py-11">
+      <Container className="h-16 flex items-center px-4 md:px-4 lg:px-4 py-4">
         <Link href={"/"}>
           <h1 className="text-2xl font-bold">
             <span className="text-primary">Cats</span>

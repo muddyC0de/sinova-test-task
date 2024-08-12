@@ -18,7 +18,7 @@ export const Card: React.FC<Props> = ({
     <div
       className={clsx(
         className,
-        "rounded-3xl ring-1 cursor-pointer p-4 ring-gray-200 w-[400px] height-[500px]",
+        "rounded-3xl ring-1 cursor-pointer p-4 ring-gray-200 w-full height-[500px]",
         isDog ? "text-secondary" : "text-primary"
       )}
     >
