@@ -13,7 +13,7 @@ export default async function DogPage({ params }: { params: { id: string } }) {
     }
   );
   return (
-    <Container>
+    <Container className="px-4 md:px-4 lg:px-4">
       <div>
         <h1 className="text-4xl mb-4 font-bold">{data[0].breeds[0].name}</h1>
       </div>
@@ -23,13 +23,13 @@ export default async function DogPage({ params }: { params: { id: string } }) {
       </p>
       <p className="text-gray-400">Life span: {data[0].breeds[0].life_span}</p>
 
-      <div className="flex flex-wrap gap-3 mt-4">
+      <div className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mt-4">
         {data.map((item: any) => (
           <img
             key={item.id}
             src={item.url}
             alt={item.breeds[0].name}
-            className="w-[400px] rounded-md h-[400px] object-cover"
+            className="w-full mt-3 rounded-md h-[400px] object-cover"
           />
         ))}
       </div>
