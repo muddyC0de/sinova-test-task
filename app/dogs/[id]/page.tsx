@@ -40,14 +40,14 @@ export default async function DogPage({ params }: { params: { id: string } }) {
       </p>
       <p className="text-gray-400">Life span: {data[0].breeds[0].life_span}</p>
 
-      <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 mt-4">
         {data.map((item: any) => (
           <Image
             key={item.id}
             src={item.url}
             alt={item.breeds[0].name}
             placeholder="blur"
-            blurDataURL={"/images/dog.jpg"}
+            blurDataURL={"images/dog.jpg"}
             width={0}
             height={0}
             sizes="100vw"
