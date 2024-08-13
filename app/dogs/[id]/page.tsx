@@ -1,20 +1,34 @@
 import { Container } from "@/shared/components";
-import axios from "axios";
+import { getDog } from "@/shared/services/breeds";
+import { Metadata, ResolvingMetadata } from "next";
+import Image from "next/image";
 
-export default async function DogPage({ params }: { params: { id: string } }) {
-  const { data } = await axios.get(
-    `https://api.thedogapi.com/v1/images/search?limit=10&timestamp=${new Date().getTime()}&breed_ids=` +
-      params.id,
+type Props = {
+  params: { id: string };
+};
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const id = params.id;
+
+  const data = await fetch(
+    `https://api.thedogapi.com/v1/images/search?breed_ids=` + id,
     {
       headers: {
-        "x-api-key":
-          "live_L2X759mQRgukeiyBqm85q3hxHOG8fMKRNlNb2nltEPv0MjzqGDdr7e1Wkhn8i7um",
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-        Expires: "0",
+        "x-api-key": process.env.DOGS_API_KEY as string,
       },
     }
-  );
+  ).then((res) => res.json());
+
+  return {
+    title: data[0].breeds[0].name,
+  };
+}
+
+export default async function DogPage({ params }: { params: { id: string } }) {
+  const data = await getDog(params.id);
   return (
     <Container className="px-4 md:px-4 lg:px-4">
       <div>
@@ -28,10 +42,15 @@ export default async function DogPage({ params }: { params: { id: string } }) {
 
       <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 mt-4">
         {data.map((item: any) => (
-          <img
+          <Image
             key={item.id}
             src={item.url}
             alt={item.breeds[0].name}
+            placeholder="blur"
+            blurDataURL={"/images/dog.jpg"}
+            width={0}
+            height={0}
+            sizes="100vw"
             className="w-full mt-3 rounded-md h-[400px] object-cover"
           />
         ))}

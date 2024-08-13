@@ -1,20 +1,36 @@
 import { Container } from "@/shared/components";
+import { getCat } from "@/shared/services/breeds";
 import axios from "axios";
+import { Metadata, ResolvingMetadata } from "next";
+import Image from "next/image";
 
-export default async function CatPage({ params }: { params: { id: string } }) {
-  const { data } = await axios.get(
-    `https://api.thecatapi.com/v1/images/search?limit=10&timestamp=${new Date().getTime()}&breed_ids=` +
-      params.id,
+type Props = {
+  params: { id: string };
+};
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const id = params.id;
+
+  const data = await fetch(
+    `https://api.thecatapi.com/v1/images/search?breed_ids=` + id,
     {
       headers: {
-        "x-api-key":
-          "live_9QSdBoRmx3U5ykKjEI09Qm2h8xmuyGCAOCyIZdoqBon7obnaqYweugQ9l0RVrUks",
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-        Expires: "0",
+        "x-api-key": process.env.CATS_API_KEY,
       },
     }
-  );
+  ).then((res) => res.json());
+
+  return {
+    title: data[0].breeds[0].name,
+  };
+}
+
+export default async function CatPage({ params }: { params: { id: string } }) {
+  const id = params.id;
+  const data = await getCat(id);
   return (
     <Container className="px-4 md:px-4 lg:px-4">
       <div>
@@ -30,11 +46,16 @@ export default async function CatPage({ params }: { params: { id: string } }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
         {data.map((item: any) => (
-          <img
+          <Image
             key={item.id}
             src={item.url}
             alt={item.breeds[0].name}
-            className="w-full mt-3 rounded-md h-[400px] object-cover"
+            width={0}
+            placeholder="blur"
+            blurDataURL={"/images/cat.jpg"}
+            height={0}
+            sizes="100vw"
+            className="mt-3 w-full h-[400px] object-cover rounded-md "
           />
         ))}
       </div>

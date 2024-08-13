@@ -1,42 +1,14 @@
 import { Container } from "@/shared/components";
 import { Card } from "@/shared/components/Card";
+import { shuffleArray } from "@/shared/lib";
+import { getCats, getDogs } from "@/shared/services/breeds";
 import Link from "next/link";
 
 export default async function Home() {
-  const dogs = await fetch(
-    `https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1`,
-    {
-      headers: {
-        "x-api-key":
-          "live_L2X759mQRgukeiyBqm85q3hxHOG8fMKRNlNb2nltEPv0MjzqGDdr7e1Wkhn8i7um",
-      },
-      cache: "no-cache",
-    }
-  ).then((res) => res.json());
+  const dogs = await getDogs();
 
-  const cats = await fetch(
-    `https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1`,
-    {
-      headers: {
-        "x-api-key":
-          "live_9QSdBoRmx3U5ykKjEI09Qm2h8xmuyGCAOCyIZdoqBon7obnaqYweugQ9l0RVrUks",
-      },
-      cache: "no-cache",
-    }
-  ).then((res) => res.json());
-  const shuffleArray = (array: []) => {
-    let currentIndex = array.length,
-      randomIndex;
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-    return array;
-  };
+  const cats = await getCats();
+
   return (
     <Container>
       <div className="grid px-4 md:px-4 lg:px-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
