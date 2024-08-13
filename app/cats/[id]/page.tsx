@@ -18,7 +18,7 @@ export async function generateMetadata(
     `https://api.thecatapi.com/v1/images/search?breed_ids=` + id,
     {
       headers: {
-        "x-api-key": process.env.CATS_API_KEY,
+        "x-api-key": process.env.CATS_API_KEY as string,
       },
     }
   ).then((res) => res.json());
