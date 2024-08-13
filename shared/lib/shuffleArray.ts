@@ -1,4 +1,4 @@
-export const shuffleArray = (array: []) => {
+export const shuffleArray = (array: any[]) => {
   let currentIndex = array.length,
     randomIndex;
   while (currentIndex !== 0) {

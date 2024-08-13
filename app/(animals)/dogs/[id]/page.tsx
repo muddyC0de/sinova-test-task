@@ -45,9 +45,9 @@ export default async function DogPage({ params }: { params: { id: string } }) {
           <Image
             key={item.id}
             src={item.url}
-            alt={item.breeds[0].name}
+            alt={item.breeds[0].name || ""}
             placeholder="blur"
-            blurDataURL={"images/dog.jpg"}
+            blurDataURL={"/images/dog.jpg"}
             width={0}
             height={0}
             sizes="100vw"

@@ -27,10 +27,10 @@ export const Card: React.FC<Props> = ({
         src={imageUrl}
         width={0}
         placeholder="blur"
-        blurDataURL={isDog ? "images/dog.jpg" : "images/cat.jpg"}
+        blurDataURL={isDog ? "/images/dog.jpg" : "/images/cat.jpg"}
         height={0}
         sizes="100vw"
-        alt={title}
+        alt={title || ""}
       />
       <h2 className="text-xl font-bold">{title}</h2>
     </div>

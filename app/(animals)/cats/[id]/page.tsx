@@ -49,10 +49,10 @@ export default async function CatPage({ params }: { params: { id: string } }) {
           <Image
             key={item.id}
             src={item.url}
-            alt={item.breeds[0].name}
+            alt={item.breeds[0].name || ""}
             width={0}
             placeholder="blur"
-            blurDataURL={"images/cat.jpg"}
+            blurDataURL={"/images/cat.jpg"}
             height={0}
             sizes="100vw"
             className="mt-3 w-full h-[400px] object-cover rounded-md "
